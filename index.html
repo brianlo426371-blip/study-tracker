@@ -29,30 +29,42 @@
 html,body{height:100%;overflow:hidden;background:var(--bg)}
 body{font-family:'Outfit',sans-serif;color:var(--text);font-size:15px;display:flex;flex-direction:column}
 
+/* ── Login screen ── */
+.login-screen{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;gap:20px;overflow-y:auto}
+.login-logo{width:72px;height:72px;background:var(--accent);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:4px;box-shadow:0 8px 32px rgba(108,92,231,.4)}
+.login-title{font-size:26px;font-weight:700;letter-spacing:-.5px;text-align:center}
+.login-sub{font-size:14px;color:var(--muted);text-align:center;margin-top:-8px}
+.login-card{width:100%;max-width:360px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:14px}
+.login-tab-row{display:flex;background:var(--surface2);border-radius:var(--radius-xs);padding:3px;gap:3px;margin-bottom:4px}
+.login-tab{flex:1;padding:8px;border:none;background:none;color:var(--muted);font-size:13px;font-family:'Outfit',sans-serif;font-weight:500;cursor:pointer;border-radius:var(--radius-xs);transition:all .15s}
+.login-tab.active{background:var(--accent);color:#fff}
+.inp{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:13px 14px;color:var(--text);font-size:15px;font-family:'Outfit',sans-serif;outline:none}
+.inp:focus{border-color:var(--accent)}
+.btn-primary{display:flex;align-items:center;justify-content:center;gap:6px;padding:13px;border-radius:var(--radius-sm);border:none;background:var(--accent);color:#fff;font-size:15px;font-family:'Outfit',sans-serif;font-weight:600;cursor:pointer;width:100%;transition:all .15s}
+.btn-primary:active{background:#5a4cd6}
+.err-msg{font-size:12px;color:var(--red2);text-align:center;min-height:16px}
+
 /* ── Top bar ── */
-.topbar{
-  background:var(--surface);border-bottom:1px solid var(--border);
-  padding:calc(var(--safe-top) + 12px) 16px 12px;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-shrink:0;position:sticky;top:0;z-index:50
-}
-.topbar-title{font-size:18px;font-weight:700;letter-spacing:-.5px;display:flex;align-items:center;gap:8px}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:calc(var(--safe-top) + 12px) 16px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;z-index:50}
+.topbar-left{display:flex;align-items:center;gap:10px}
 .topbar-icon{width:30px;height:30px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px}
+.topbar-title{font-size:17px;font-weight:700;letter-spacing:-.3px}
+.topbar-user{font-size:11px;color:var(--muted);margin-top:1px}
+.topbar-right{display:flex;align-items:center;gap:10px}
+.sync-dot{width:7px;height:7px;border-radius:50%;background:var(--muted);transition:background .3s}
+.sync-dot.ok{background:var(--green);box-shadow:0 0 6px var(--green)}
+.sync-dot.err{background:var(--red)}
+.sync-dot.syncing{background:var(--amber);animation:pulse 1s ease-in-out infinite}
+.icon-btn{border:none;background:none;color:var(--muted);font-size:18px;cursor:pointer;padding:4px;line-height:1}
 
-/* ── Scroll area ── */
+/* ── Scroll + nav ── */
 .scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 0 calc(var(--safe-bottom) + 80px)}
-
-/* ── Bottom nav ── */
-.bottom-nav{
-  background:var(--surface);border-top:1px solid var(--border);
-  display:flex;padding:8px 0 calc(var(--safe-bottom) + 8px);
-  flex-shrink:0;position:sticky;bottom:0;z-index:50
-}
+.bottom-nav{background:var(--surface);border-top:1px solid var(--border);display:flex;padding:8px 0 calc(var(--safe-bottom) + 8px);flex-shrink:0;z-index:50}
 .nav-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 4px;border:none;background:none;color:var(--muted);font-size:10px;font-family:'Outfit',sans-serif;font-weight:500;cursor:pointer;transition:color .15s;letter-spacing:.3px}
 .nav-tab.active{color:var(--accent2)}
 .nav-tab-icon{font-size:20px;line-height:1}
 
-/* ── Stats strip ── */
+/* ── Stats ── */
 .stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 14px 0}
 .stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 10px;text-align:center;position:relative;overflow:hidden}
 .stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--ac,var(--accent))}
@@ -63,24 +75,24 @@ body{font-family:'Outfit',sans-serif;color:var(--text);font-size:15px;display:fl
 .section-header{display:flex;align-items:center;justify-content:space-between;padding:16px 14px 8px}
 .section-title{font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--muted)}
 
-/* ── Filter chips ── */
+/* ── Chips ── */
 .chips{display:flex;gap:8px;padding:0 14px 12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
 .chip{flex-shrink:0;padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:none;color:var(--muted);font-size:12px;font-family:'Outfit',sans-serif;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .15s}
 .chip.active{background:var(--accent-bg);border-color:rgba(108,92,231,.4);color:var(--accent2)}
 
-/* ── Subject cards ── */
+/* ── Cards ── */
 .cards{padding:0 14px;display:flex;flex-direction:column;gap:10px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;transition:transform .1s,border-color .15s;active:scale(.98)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;transition:transform .1s,border-color .15s}
 .card:active{transform:scale(.98)}
-.card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
-.card-title{font-size:15px;font-weight:600;letter-spacing:-.2px;flex:1;min-width:0}
+.card-title{font-size:15px;font-weight:600;letter-spacing:-.2px;margin-bottom:8px}
 .card-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
 .badge{display:inline-flex;align-items:center;font-size:10px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;padding:3px 9px;border-radius:20px}
 .badge-high{background:var(--red-bg);color:var(--red2)}
 .badge-medium{background:var(--amber-bg);color:var(--amber)}
 .badge-low{background:var(--green-bg);color:var(--green)}
 .badge-date{background:var(--blue-bg);color:var(--blue2);text-transform:none;font-size:11px;font-weight:500}
+.badge-start{background:var(--green-bg);color:var(--green2);text-transform:none;font-size:11px;font-weight:500}
 .badge-urgent{background:rgba(232,67,147,.25);color:var(--red2)}
 .status-pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;border:1px solid transparent}
 .sp-not{background:rgba(120,120,160,.1);color:var(--muted);border-color:rgba(120,120,160,.2)}
@@ -89,6 +101,8 @@ body{font-family:'Outfit',sans-serif;color:var(--text);font-size:15px;display:fl
 .card-notes{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:10px}
 .card-links{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
 .link-chip{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:4px 10px;border-radius:20px;background:var(--surface2);border:1px solid var(--border);color:var(--accent2);text-decoration:none}
+.date-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;font-size:12px;color:var(--muted);align-items:center}
+.date-sep{color:var(--muted2);font-size:10px}
 
 /* ── Progress ── */
 .prog-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
@@ -99,46 +113,31 @@ body{font-family:'Outfit',sans-serif;color:var(--text);font-size:15px;display:fl
 .pbar-fill.done{background:var(--green)}
 .slider{width:100%;-webkit-appearance:none;appearance:none;height:4px;border-radius:10px;background:var(--surface3);outline:none;cursor:pointer;margin-top:6px}
 .slider::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
-
-/* ── Card actions ── */
 .card-actions{display:flex;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
 .card-btn{flex:1;padding:8px;border-radius:var(--radius-xs);border:1px solid var(--border2);background:var(--surface2);color:var(--muted);font-size:12px;font-family:'Outfit',sans-serif;font-weight:500;cursor:pointer;text-align:center}
 .card-btn.danger{color:var(--red2);border-color:rgba(232,67,147,.2);background:var(--red-bg)}
-
-/* ── Buttons ── */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 20px;border-radius:var(--radius-sm);border:1px solid var(--border2);background:var(--surface2);color:var(--text);cursor:pointer;font-size:14px;font-family:'Outfit',sans-serif;font-weight:600;transition:all .15s;width:100%}
-.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn-primary:active{background:#5a4cd6}
-.btn-ghost{background:none;border-color:transparent;color:var(--muted)}
 
 /* ── FAB ── */
 .fab{position:fixed;right:18px;bottom:calc(var(--safe-bottom) + 76px);width:54px;height:54px;border-radius:50%;background:var(--accent);border:none;color:#fff;font-size:26px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(108,92,231,.5);cursor:pointer;z-index:40;transition:transform .15s}
 .fab:active{transform:scale(.92)}
 
-/* ── Bottom sheet modal ── */
+/* ── Sheet modal ── */
 .sheet-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;display:flex;flex-direction:column;justify-content:flex-end;opacity:0;pointer-events:none;transition:opacity .25s}
 .sheet-overlay.open{opacity:1;pointer-events:all}
-.sheet{background:var(--surface);border-radius:20px 20px 0 0;padding:0 16px calc(var(--safe-bottom) + 20px);max-height:92vh;overflow-y:auto;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.sheet{background:var(--surface);border-radius:20px 20px 0 0;padding:0 16px calc(var(--safe-bottom) + 24px);max-height:92vh;overflow-y:auto;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
 .sheet-overlay.open .sheet{transform:translateY(0)}
 .sheet-handle{width:36px;height:4px;background:var(--surface3);border-radius:2px;margin:12px auto 16px}
 .sheet-title{font-size:17px;font-weight:700;margin-bottom:20px;letter-spacing:-.3px}
 
-/* ── Form fields ── */
+/* ── Form ── */
 .field{margin-bottom:14px}
 .field label{display:block;font-size:10px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.field input,.field select,.field textarea{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text);font-size:15px;font-family:'Outfit',sans-serif;outline:none;-webkit-appearance:none;appearance:none}
+.field input,.field select,.field textarea{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text);font-size:15px;font-family:'Outfit',sans-serif;outline:none;-webkit-appearance:none}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent)}
 .field textarea{resize:vertical;min-height:80px;line-height:1.5}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-
-/* ── Setup screen ── */
-.setup-screen{padding:24px 20px;display:flex;flex-direction:column;gap:16px}
-.setup-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
-.setup-step{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
-.setup-num{width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.setup-text{font-size:13px;line-height:1.6;color:var(--muted)}
-.setup-text strong{color:var(--text)}
-.setup-input{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text);font-size:13px;font-family:'JetBrains Mono',monospace;outline:none;margin-top:8px;word-break:break-all}
+.btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:13px;border-radius:var(--radius-sm);border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-size:14px;font-family:'Outfit',sans-serif;font-weight:600;cursor:pointer;width:100%;margin-bottom:8px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 
 /* ── Calendar ── */
 .cal-wrap{padding:14px}
@@ -146,32 +145,45 @@ body{font-family:'Outfit',sans-serif;color:var(--text);font-size:15px;display:fl
 .cal-month{font-size:16px;font-weight:700}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
 .cal-day-name{text-align:center;font-size:9px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);padding:4px 0}
-.cal-cell{min-height:52px;border-radius:var(--radius-xs);padding:4px;background:var(--surface)}
+.cal-cell{min-height:60px;border-radius:var(--radius-xs);padding:4px;background:var(--surface)}
 .cal-cell.today{background:var(--accent-bg);outline:1px solid var(--accent)}
 .cal-cell.other{opacity:.3}
 .cal-date{font-size:11px;font-weight:600;color:var(--muted);margin-bottom:2px}
 .cal-cell.today .cal-date{color:var(--accent2)}
 .cal-evt{font-size:9px;font-weight:600;padding:1px 4px;border-radius:3px;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cal-evt.high{background:var(--red-bg);color:var(--red2)}
-.cal-evt.medium{background:var(--amber-bg);color:var(--amber)}
-.cal-evt.low{background:var(--green-bg);color:var(--green)}
+.cal-evt.exam-high{background:var(--red-bg);color:var(--red2)}
+.cal-evt.exam-medium{background:var(--amber-bg);color:var(--amber)}
+.cal-evt.exam-low{background:var(--green-bg);color:var(--green)}
+.cal-evt.start-event{background:var(--green-bg);color:var(--green2);opacity:.8}
 
 /* ── Gantt ── */
 .gantt-wrap{padding:14px;overflow-x:auto}
-.gantt-row{display:flex;margin-bottom:8px;align-items:center;gap:8px}
+.gantt-row{display:flex;margin-bottom:10px;align-items:center;gap:8px}
 .gantt-lbl{width:110px;flex-shrink:0}
 .gantt-lbl-name{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .gantt-lbl-sub{font-size:10px;color:var(--muted);margin-top:1px}
-.gantt-track{flex:1;height:28px;background:var(--surface);border-radius:6px;position:relative;overflow:hidden;min-width:180px}
-.gantt-bar-bg{position:absolute;top:4px;height:20px;border-radius:4px;opacity:.3}
-.gantt-bar-fill{position:absolute;top:4px;height:20px;border-radius:4px;display:flex;align-items:center;padding:0 6px;font-size:9px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden}
-.gantt-bar-bg.high,.gantt-bar-fill.high{background:rgba(232,67,147,.8)}
-.gantt-bar-bg.medium,.gantt-bar-fill.medium{background:rgba(253,203,110,.8)}
-.gantt-bar-fill.medium{color:#1a1a00}
-.gantt-bar-bg.low,.gantt-bar-fill.low{background:rgba(0,184,148,.8)}
-.gantt-today-line{position:absolute;top:0;bottom:0;width:2px;background:var(--accent2)}
+.gantt-track{flex:1;height:32px;background:var(--surface2);border-radius:6px;position:relative;overflow:hidden;min-width:200px}
+.gantt-bg{position:absolute;top:5px;height:22px;border-radius:4px;opacity:.25}
+.gantt-fill{position:absolute;top:5px;height:22px;border-radius:4px;display:flex;align-items:center;padding:0 6px;font-size:9px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden}
+.gantt-bg.high,.gantt-fill.high{background:rgba(232,67,147,.9)}
+.gantt-bg.medium,.gantt-fill.medium{background:rgba(253,203,110,.9)}
+.gantt-fill.medium{color:#2a1a00}
+.gantt-bg.low,.gantt-fill.low{background:rgba(0,184,148,.9)}
+.gantt-today{position:absolute;top:0;bottom:0;width:2px;background:var(--accent2);z-index:2}
+.gantt-ruler{display:flex;margin-left:118px;margin-bottom:4px;position:relative;min-width:200px}
+.gantt-ruler-lbl{position:absolute;font-size:9px;color:var(--muted);font-family:'JetBrains Mono',monospace;transform:translateX(-50%)}
 
-/* ── Empty / loading ── */
+/* ── Setup screen ── */
+.setup-screen{padding:24px 16px;display:flex;flex-direction:column;gap:14px}
+.setup-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
+.setup-step{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px}
+.setup-num{width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.setup-text{font-size:13px;line-height:1.6;color:var(--muted)}
+.setup-text strong{color:var(--text)}
+.mono-inp{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:11px 12px;color:var(--text);font-size:12px;font-family:'JetBrains Mono',monospace;outline:none;margin-top:6px}
+.mono-inp:focus{border-color:var(--accent)}
+
+/* ── Misc ── */
 .empty{text-align:center;padding:3rem 2rem;color:var(--muted)}
 .empty-icon{font-size:40px;margin-bottom:12px;opacity:.4}
 .empty-title{font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px}
@@ -181,415 +193,449 @@ body{font-family:'Outfit',sans-serif;color:var(--text);font-size:15px;display:fl
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .fade-in{animation:fadeIn .2s ease}
-
-/* ── Toast ── */
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
 .toast-wrap{position:fixed;top:calc(var(--safe-top) + 60px);left:50%;transform:translateX(-50%);z-index:200;pointer-events:none}
 .toast{background:var(--surface2);border:1px solid var(--border2);border-radius:20px;padding:10px 18px;font-size:13px;font-weight:500;white-space:nowrap;animation:fadeIn .2s ease}
-
-/* ── Sync indicator ── */
-.sync-dot{width:7px;height:7px;border-radius:50%;background:var(--muted);transition:background .3s}
-.sync-dot.ok{background:var(--green);box-shadow:0 0 6px var(--green)}
-.sync-dot.err{background:var(--red)}
-.sync-dot.syncing{background:var(--amber);animation:pulse 1s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
 </style>
 </head>
 <body>
 
-<!-- Top bar -->
-<div class="topbar">
-  <div class="topbar-title">
-    <div class="topbar-icon">📚</div>
-    Study Tracker
-  </div>
-  <div style="display:flex;align-items:center;gap:8px">
-    <div class="sync-dot" id="sync-dot" title="Sync status"></div>
-    <button class="btn-ghost" style="border:none;background:none;color:var(--muted);font-size:18px;cursor:pointer;padding:4px" onclick="openSettings()">⚙️</button>
-  </div>
-</div>
-
-<!-- Scroll area -->
-<div class="scroll" id="scroll-area">
-  <div class="loading"><div class="spinner"></div>Loading...</div>
-</div>
-
-<!-- Bottom nav -->
-<div class="bottom-nav">
-  <button class="nav-tab active" onclick="switchTab('dashboard',this)">
-    <span class="nav-tab-icon">◼</span>Dashboard
-  </button>
-  <button class="nav-tab" onclick="switchTab('calendar',this)">
-    <span class="nav-tab-icon">📅</span>Calendar
-  </button>
-  <button class="nav-tab" onclick="switchTab('gantt',this)">
-    <span class="nav-tab-icon">📊</span>Gantt
-  </button>
-</div>
-
-<!-- FAB -->
-<button class="fab" id="fab" onclick="openAddSheet()">+</button>
-
-<!-- Bottom sheet modal -->
+<div id="app-root" style="display:flex;flex-direction:column;height:100%"></div>
 <div class="sheet-overlay" id="sheet-overlay" onclick="if(event.target===this)closeSheet()">
-  <div class="sheet" id="sheet">
-    <div class="sheet-handle"></div>
-    <div id="sheet-content"></div>
-  </div>
+  <div class="sheet" id="sheet"><div class="sheet-handle"></div><div id="sheet-content"></div></div>
 </div>
-
-<!-- Toast -->
 <div class="toast-wrap" id="toast-wrap"></div>
 
 <script>
 // ══════════════════════════════════════════════════════════════════════
-// CONFIG — stored in localStorage
+// STATE
 // ══════════════════════════════════════════════════════════════════════
-const SCOPES = 'https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/drive.file';
-let cfg = JSON.parse(localStorage.getItem('st-config') || '{}');
+let cfg         = JSON.parse(localStorage.getItem('st-cfg') || '{}');
 // cfg = { apiKey, clientId, sheetId }
-
-let subjects   = [];
-let currentTab = 'dashboard';
-let filterMode = 'all';
-let sortBy     = 'priority';
+let currentUser = JSON.parse(sessionStorage.getItem('st-user') || 'null');
+// currentUser = { username, role } role = 'admin'|'user'
+let subjects    = [];
+let currentTab  = 'dashboard';
+let filterMode  = 'all';
+let sortBy      = 'priority';
 let calYear, calMonth;
-let gapiReady  = false;
-let gisReady   = false;
+let gapiReady   = false;
+let gisReady    = false;
 let tokenClient;
 
-// ── Helpers ───────────────────────────────────────────────────────────
-function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,5); }
-function daysUntil(d) { if(!d) return null; return Math.ceil((new Date(d)-new Date())/86400000); }
-function fmtDate(d) { if(!d) return ''; try{ return new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}); }catch{ return d; } }
-function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function safeHost(u) { try{ return new URL(u).hostname; }catch{ return u; } }
+const SCOPES = 'https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/drive.file';
+const SUBJ_SHEET  = 'Subjects';
+const USERS_SHEET = 'Users';
+
+// ══════════════════════════════════════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════════════════════════════════════
+function esc(s)     { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function safeHost(u){ try{return new URL(u).hostname;}catch{return u;} }
+function daysUntil(d){ if(!d)return null; return Math.ceil((new Date(d)-new Date())/86400000); }
+function fmtDate(d) { if(!d)return ''; try{return new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}catch{return d;} }
+function fmtShort(d){ if(!d)return ''; try{return new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric'});}catch{return d;} }
+
+// Simple hash (SHA-256 via SubtleCrypto)
+async function hashPassword(pw) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
 
 function toast(msg, type='') {
   const el = document.getElementById('toast-wrap');
-  const color = type==='ok'?'var(--green2)':type==='err'?'var(--red2)':'var(--text)';
-  el.innerHTML = `<div class="toast" style="color:${color}">${msg}</div>`;
-  setTimeout(() => el.innerHTML='', 2500);
+  const c = type==='ok'?'var(--green2)':type==='err'?'var(--red2)':'var(--text)';
+  el.innerHTML=`<div class="toast" style="color:${c}">${msg}</div>`;
+  setTimeout(()=>el.innerHTML='', 2800);
 }
 
 function setSyncStatus(s) {
   const dot = document.getElementById('sync-dot');
-  dot.className = 'sync-dot ' + s;
+  if(dot) dot.className = 'sync-dot '+s;
 }
 
 function statusPill(status) {
-  const map = {
-    'not started': ['sp-not','○ Not started'],
-    'in progress': ['sp-prog','◑ In progress'],
-    'finished':    ['sp-done','● Finished'],
-  };
+  const map = {'not started':['sp-not','○ Not started'],'in progress':['sp-prog','◑ In progress'],'finished':['sp-done','● Finished']};
   const [cls,lbl] = map[status]||map['not started'];
   return `<span class="status-pill ${cls}">${lbl}</span>`;
 }
 
-// ── Service worker ────────────────────────────────────────────────────
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js').catch(()=>{});
-}
+if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(()=>{});
 
 // ══════════════════════════════════════════════════════════════════════
 // GOOGLE API
 // ══════════════════════════════════════════════════════════════════════
 function loadGoogleAPIs() {
   return new Promise(resolve => {
-    const s1 = document.createElement('script');
-    s1.src = 'https://apis.google.com/js/api.js';
-    s1.onload = () => {
-      gapi.load('client', async () => {
-        await gapi.client.init({
-          apiKey: cfg.apiKey,
-          discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
-        });
-        gapiReady = true;
-        if (gisReady) resolve();
-      });
-    };
+    const s1=document.createElement('script'); s1.src='https://apis.google.com/js/api.js';
+    s1.onload=()=>{ gapi.load('client', async ()=>{
+      await gapi.client.init({ apiKey:cfg.apiKey, discoveryDocs:['https://sheets.googleapis.com/$discovery/rest?version=v4'] });
+      gapiReady=true; if(gisReady) resolve();
+    }); };
     document.head.appendChild(s1);
 
-    const s2 = document.createElement('script');
-    s2.src = 'https://accounts.google.com/gsi/client';
-    s2.onload = () => {
-      tokenClient = google.accounts.oauth2.initTokenClient({
-        client_id: cfg.clientId,
-        scope: SCOPES,
-        callback: async (resp) => {
-          if (resp.error) { setSyncStatus('err'); toast('Auth failed','err'); return; }
+    const s2=document.createElement('script'); s2.src='https://accounts.google.com/gsi/client';
+    s2.onload=()=>{
+      tokenClient=google.accounts.oauth2.initTokenClient({
+        client_id:cfg.clientId, scope:SCOPES,
+        callback: async(resp)=>{
+          if(resp.error){ setSyncStatus('err'); toast('Google auth failed','err'); return; }
           setSyncStatus('syncing');
-          await ensureSheet();
-          await loadSubjects();
-          renderTab();
-        },
+          await ensureSheets();
+          showLoginScreen();
+        }
       });
-      gisReady = true;
-      if (gapiReady) resolve();
+      gisReady=true; if(gapiReady) resolve();
     };
     document.head.appendChild(s2);
   });
 }
 
-function signIn() {
-  if (gapi.client.getToken() === null) {
-    tokenClient.requestAccessToken({ prompt: 'consent' });
-  } else {
-    tokenClient.requestAccessToken({ prompt: '' });
+function googleSignIn() {
+  gapi.client.getToken()===null
+    ? tokenClient.requestAccessToken({prompt:'consent'})
+    : tokenClient.requestAccessToken({prompt:''});
+}
+
+// ══════════════════════════════════════════════════════════════════════
+// SHEET BOOTSTRAP
+// ══════════════════════════════════════════════════════════════════════
+async function ensureSheets() {
+  // If sheetId not set, create a new spreadsheet
+  if (!cfg.sheetId) {
+    const res = await gapi.client.sheets.spreadsheets.create({
+      resource: {
+        properties: {title:'Study Tracker Data'},
+        sheets: [
+          {properties:{title:SUBJ_SHEET}},
+          {properties:{title:USERS_SHEET}}
+        ]
+      }
+    });
+    cfg.sheetId = res.result.spreadsheetId;
+    localStorage.setItem('st-cfg', JSON.stringify(cfg));
+
+    // Write headers
+    await gapi.client.sheets.spreadsheets.values.batchUpdate({
+      spreadsheetId: cfg.sheetId,
+      resource: { valueInputOption:'RAW', data:[
+        { range:`${SUBJ_SHEET}!A1`, values:[['id','userId','name','priority','startDate','examDate','progress','status','notes','links','createdAt']] },
+        { range:`${USERS_SHEET}!A1`, values:[['username','passwordHash','role','createdAt']] }
+      ]}
+    });
+    console.log('Sheet created:', cfg.sheetId);
   }
 }
 
-// ── Sheet operations ──────────────────────────────────────────────────
-async function ensureSheet() {
-  if (cfg.sheetId) return;
-  // Create a new sheet
-  const res = await gapi.client.sheets.spreadsheets.create({
-    resource: {
-      properties: { title: 'Study Tracker Data' },
-      sheets: [{ properties: { title: 'Subjects' } }]
-    }
-  });
-  cfg.sheetId = res.result.spreadsheetId;
-  localStorage.setItem('st-config', JSON.stringify(cfg));
-  // Write header
-  await gapi.client.sheets.spreadsheets.values.update({
-    spreadsheetId: cfg.sheetId,
-    range: 'Subjects!A1',
-    valueInputOption: 'RAW',
-    resource: { values: [['id','name','priority','examDate','progress','status','notes','links','createdAt']] }
-  });
+// ══════════════════════════════════════════════════════════════════════
+// USER MANAGEMENT
+// ══════════════════════════════════════════════════════════════════════
+async function getUsers() {
+  try {
+    const res = await gapi.client.sheets.spreadsheets.values.get({
+      spreadsheetId:cfg.sheetId, range:`${USERS_SHEET}!A2:D`
+    });
+    return (res.result.values||[]).filter(r=>r[0]).map(r=>({
+      username: r[0]||'', passwordHash: r[1]||'', role: r[2]||'user', createdAt: r[3]||''
+    }));
+  } catch{ return []; }
 }
 
-function rowToSubject(row) {
-  while (row.length < 9) row.push('');
+async function registerUser(username, password, role='user') {
+  const users = await getUsers();
+  if (users.find(u=>u.username.toLowerCase()===username.toLowerCase()))
+    return {ok:false, err:'Username already exists'};
+  const hash = await hashPassword(password);
+  await gapi.client.sheets.spreadsheets.values.append({
+    spreadsheetId:cfg.sheetId, range:`${USERS_SHEET}!A2`,
+    valueInputOption:'RAW', insertDataOption:'INSERT_ROWS',
+    resource:{values:[[username, hash, role, new Date().toISOString()]]}
+  });
+  return {ok:true};
+}
+
+async function loginUser(username, password) {
+  const users = await getUsers();
+  const user  = users.find(u=>u.username.toLowerCase()===username.toLowerCase());
+  if (!user) return {ok:false, err:'Username not found'};
+  const hash = await hashPassword(password);
+  if (hash !== user.passwordHash) return {ok:false, err:'Incorrect password'};
+  return {ok:true, user:{username:user.username, role:user.role}};
+}
+
+// ══════════════════════════════════════════════════════════════════════
+// SUBJECTS CRUD
+// ══════════════════════════════════════════════════════════════════════
+function rowToSubject(r) {
+  while(r.length<11) r.push('');
   return {
-    id:        row[0]||'',
-    name:      row[1]||'',
-    priority:  row[2]||'medium',
-    examDate:  row[3]||'',
-    progress:  parseInt(row[4])||0,
-    status:    row[5]||'not started',
-    notes:     row[6]||'',
-    links:     (row[7]||'').split('|').map(l=>l.trim()).filter(Boolean),
-    createdAt: row[8]||'',
+    id:r[0]||'', userId:r[1]||'', name:r[2]||'', priority:r[3]||'medium',
+    startDate:r[4]||'', examDate:r[5]||'',
+    progress:parseInt(r[6])||0, status:r[7]||'not started',
+    notes:r[8]||'', links:(r[9]||'').split('|').map(l=>l.trim()).filter(Boolean),
+    createdAt:r[10]||''
   };
 }
 
 function subjectToRow(s) {
-  return [s.id,s.name,s.priority,s.examDate,String(s.progress||0),s.status,s.notes||'',(s.links||[]).join('|'),s.createdAt||''];
+  return [s.id,s.userId,s.name,s.priority,s.startDate||'',s.examDate||'',
+          String(s.progress||0),s.status,s.notes||'',(s.links||[]).join('|'),s.createdAt||''];
 }
 
 async function loadSubjects() {
   setSyncStatus('syncing');
   try {
     const res = await gapi.client.sheets.spreadsheets.values.get({
-      spreadsheetId: cfg.sheetId,
-      range: 'Subjects!A2:I',
+      spreadsheetId:cfg.sheetId, range:`${SUBJ_SHEET}!A2:K`
     });
-    subjects = (res.result.values||[]).filter(r=>r[0]).map(rowToSubject);
+    const all = (res.result.values||[]).filter(r=>r[0]).map(rowToSubject);
+    // Each user sees only their own subjects
+    subjects = all.filter(s=>s.userId===currentUser.username);
     setSyncStatus('ok');
-  } catch(e) {
-    setSyncStatus('err'); toast('Failed to load data','err');
-  }
+  } catch(e){ setSyncStatus('err'); toast('Failed to load','err'); }
 }
 
 async function writeAllSubjects() {
+  // Read ALL subjects (all users), replace current user's rows, write back
   setSyncStatus('syncing');
   try {
-    await gapi.client.sheets.spreadsheets.values.clear({
-      spreadsheetId: cfg.sheetId, range: 'Subjects!A2:I'
+    const res = await gapi.client.sheets.spreadsheets.values.get({
+      spreadsheetId:cfg.sheetId, range:`${SUBJ_SHEET}!A2:K`
     });
-    if (subjects.length) {
+    const all = (res.result.values||[]).filter(r=>r[0]).map(rowToSubject);
+    const others = all.filter(s=>s.userId!==currentUser.username);
+    const combined = [...others, ...subjects];
+    await gapi.client.sheets.spreadsheets.values.clear({
+      spreadsheetId:cfg.sheetId, range:`${SUBJ_SHEET}!A2:K`
+    });
+    if(combined.length) {
       await gapi.client.sheets.spreadsheets.values.update({
-        spreadsheetId: cfg.sheetId,
-        range: 'Subjects!A2',
-        valueInputOption: 'RAW',
-        resource: { values: subjects.map(subjectToRow) }
+        spreadsheetId:cfg.sheetId, range:`${SUBJ_SHEET}!A2`,
+        valueInputOption:'RAW', resource:{values:combined.map(subjectToRow)}
       });
     }
     setSyncStatus('ok');
-  } catch(e) {
-    setSyncStatus('err'); toast('Sync failed','err');
-  }
+  } catch(e){ setSyncStatus('err'); toast('Sync failed','err'); }
 }
 
 async function appendSubject(s) {
   setSyncStatus('syncing');
   try {
     await gapi.client.sheets.spreadsheets.values.append({
-      spreadsheetId: cfg.sheetId,
-      range: 'Subjects!A2',
-      valueInputOption: 'RAW',
-      insertDataOption: 'INSERT_ROWS',
-      resource: { values: [subjectToRow(s)] }
+      spreadsheetId:cfg.sheetId, range:`${SUBJ_SHEET}!A2`,
+      valueInputOption:'RAW', insertDataOption:'INSERT_ROWS',
+      resource:{values:[subjectToRow(s)]}
     });
     subjects.push(s);
     setSyncStatus('ok');
-  } catch(e) {
-    setSyncStatus('err'); toast('Sync failed','err');
-  }
+  } catch(e){ setSyncStatus('err'); toast('Sync failed','err'); }
 }
 
 // ══════════════════════════════════════════════════════════════════════
-// SETUP SCREEN
+// SCREENS
 // ══════════════════════════════════════════════════════════════════════
+function render(html) { document.getElementById('app-root').innerHTML = html; }
+
+// ── Setup screen ──────────────────────────────────────────────────────
 function showSetupScreen() {
-  document.getElementById('fab').style.display = 'none';
-  document.getElementById('scroll-area').innerHTML = `
-    <div class="setup-screen">
-      <div style="text-align:center;padding:8px 0 4px">
-        <div style="font-size:36px;margin-bottom:8px">📚</div>
-        <div style="font-size:20px;font-weight:700;letter-spacing:-.5px">Study Tracker</div>
-        <div style="font-size:13px;color:var(--muted);margin-top:4px">Connect your Google Sheet to get started</div>
-      </div>
+  render(`
+    <div class="scroll" style="padding-bottom:24px">
+      <div class="setup-screen">
+        <div style="text-align:center;padding:16px 0 4px">
+          <div style="font-size:40px;margin-bottom:10px">📚</div>
+          <div style="font-size:22px;font-weight:700;letter-spacing:-.5px">Study Tracker</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px">One-time Google setup</div>
+        </div>
 
-      <div class="setup-card">
-        <div style="font-size:13px;font-weight:600;margin-bottom:12px;color:var(--accent2)">One-time setup</div>
+        <div class="setup-card">
+          <div style="font-size:12px;font-weight:600;color:var(--accent2);margin-bottom:12px;text-transform:uppercase;letter-spacing:.6px">Step 1 — Google Cloud</div>
+          <div class="setup-step"><div class="setup-num">1</div><div class="setup-text">Go to <strong>console.cloud.google.com</strong> → New project → Enable <strong>Google Sheets API</strong> + <strong>Google Drive API</strong></div></div>
+          <div class="setup-step"><div class="setup-num">2</div><div class="setup-text">Credentials → <strong>Create API Key</strong> → restrict to Sheets API</div></div>
+          <div class="setup-step"><div class="setup-num">3</div><div class="setup-text">Credentials → <strong>OAuth 2.0 Client ID</strong> (Web app type) → add your GitHub Pages URL as authorised origin</div></div>
+          <div class="setup-step" style="margin-bottom:0"><div class="setup-num">4</div><div class="setup-text">OAuth consent screen → Test users → <strong>add your Gmail address</strong></div></div>
+        </div>
 
-        <div class="setup-step">
-          <div class="setup-num">1</div>
-          <div class="setup-text">Go to <strong>console.cloud.google.com</strong> → Create project → Enable <strong>Google Sheets API</strong> and <strong>Google Drive API</strong></div>
+        <div class="setup-card">
+          <div style="font-size:12px;font-weight:600;color:var(--accent2);margin-bottom:12px;text-transform:uppercase;letter-spacing:.6px">Step 2 — Paste credentials</div>
+          <div class="field"><label>Google API Key</label>
+            <input class="mono-inp" id="s-apikey" placeholder="AIzaSy..." value="${esc(cfg.apiKey||'')}">
+          </div>
+          <div class="field"><label>OAuth Client ID</label>
+            <input class="mono-inp" id="s-clientid" placeholder="123...apps.googleusercontent.com" value="${esc(cfg.clientId||'')}">
+          </div>
+          <div class="field" style="margin-bottom:0"><label>Existing Sheet ID (optional)</label>
+            <input class="mono-inp" id="s-sheetid" placeholder="Leave blank to auto-create" value="${esc(cfg.sheetId||'')}">
+          </div>
         </div>
-        <div class="setup-step">
-          <div class="setup-num">2</div>
-          <div class="setup-text">Go to <strong>APIs & Services → Credentials</strong> → Create <strong>OAuth 2.0 Client ID</strong> (Web application type) → Add <strong>https://your-github-username.github.io</strong> as authorised origin</div>
-        </div>
-        <div class="setup-step">
-          <div class="setup-num">3</div>
-          <div class="setup-text">Also create an <strong>API Key</strong> in the same Credentials page → restrict it to Sheets API</div>
-        </div>
-        <div class="setup-step" style="margin-bottom:0">
-          <div class="setup-num">4</div>
-          <div class="setup-text">Paste both below and tap <strong>Connect</strong></div>
-        </div>
-      </div>
 
-      <div class="setup-card">
-        <div class="field">
-          <label>Google API Key</label>
-          <input class="setup-input" id="inp-apikey" type="text" placeholder="AIzaSy..." value="${cfg.apiKey||''}">
-        </div>
-        <div class="field">
-          <label>OAuth Client ID</label>
-          <input class="setup-input" id="inp-clientid" type="text" placeholder="123456789-xxx.apps.googleusercontent.com" value="${cfg.clientId||''}">
-        </div>
-        <div class="field" style="margin-bottom:0">
-          <label>Sheet ID (optional — leave blank to auto-create)</label>
-          <input class="setup-input" id="inp-sheetid" type="text" placeholder="Leave blank to create a new sheet" value="${cfg.sheetId||''}">
+        <button class="btn primary" onclick="saveSetupAndConnect()">Connect to Google →</button>
+        <div style="font-size:11px;color:var(--muted);text-align:center;line-height:1.7">
+          Data stored in <strong style="color:var(--text)">your Google Sheet</strong>.<br>
+          Multiple users can share one sheet securely.
         </div>
       </div>
-
-      <button class="btn btn-primary" onclick="saveSetup()">Connect to Google →</button>
-      <div style="font-size:11px;color:var(--muted);text-align:center;line-height:1.6">
-        Your data is stored in <strong style="color:var(--text)">your own Google Sheet</strong>.<br>
-        Nothing is shared with third parties.
-      </div>
-    </div>`;
+    </div>`);
 }
 
-async function saveSetup() {
-  const apiKey   = document.getElementById('inp-apikey').value.trim();
-  const clientId = document.getElementById('inp-clientid').value.trim();
-  const sheetId  = document.getElementById('inp-sheetid').value.trim();
-  if (!apiKey || !clientId) { toast('Please fill in API Key and Client ID','err'); return; }
-  cfg = { apiKey, clientId, sheetId: sheetId||'' };
-  localStorage.setItem('st-config', JSON.stringify(cfg));
-  toast('Connecting...');
-  await initApp();
+async function saveSetupAndConnect() {
+  const apiKey   = document.getElementById('s-apikey').value.trim();
+  const clientId = document.getElementById('s-clientid').value.trim();
+  const sheetId  = document.getElementById('s-sheetid').value.trim();
+  if(!apiKey||!clientId){ toast('Please fill in API Key and Client ID','err'); return; }
+  cfg = {apiKey, clientId, sheetId:sheetId||''};
+  localStorage.setItem('st-cfg', JSON.stringify(cfg));
+  render(`<div class="loading" style="height:100vh"><div class="spinner"></div>Connecting...</div>`);
+  await loadGoogleAPIs();
+  googleSignIn();
 }
 
-function openSettings() {
-  document.getElementById('sheet-content').innerHTML = `
-    <div class="sheet-title">⚙️ Settings</div>
-    <div class="field">
-      <label>Google API Key</label>
-      <input id="s-apikey" style="width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:12px;color:var(--text);font-size:13px;font-family:'JetBrains Mono',monospace;outline:none" value="${cfg.apiKey||''}">
-    </div>
-    <div class="field">
-      <label>OAuth Client ID</label>
-      <input id="s-clientid" style="width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:12px;color:var(--text);font-size:13px;font-family:'JetBrains Mono',monospace;outline:none" value="${cfg.clientId||''}">
-    </div>
-    <div class="field">
-      <label>Sheet ID</label>
-      <input id="s-sheetid" style="width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:12px;color:var(--text);font-size:13px;font-family:'JetBrains Mono',monospace;outline:none" value="${cfg.sheetId||''}">
-    </div>
-    ${cfg.sheetId ? `<div style="font-size:12px;color:var(--muted);margin-bottom:14px">
-      <a href="https://docs.google.com/spreadsheets/d/${cfg.sheetId}" target="_blank" style="color:var(--accent2)">Open Google Sheet ↗</a>
-    </div>` : ''}
-    <button class="btn btn-primary" style="margin-bottom:10px" onclick="saveSettings()">Save & Reconnect</button>
-    <button class="btn" onclick="signIn()">Re-authenticate with Google</button>`;
-  openSheet();
+// ── Login screen ──────────────────────────────────────────────────────
+function showLoginScreen(mode='login') {
+  render(`
+    <div class="login-screen">
+      <div class="login-logo">📚</div>
+      <div class="login-title">Study Tracker</div>
+      <div class="login-sub">Sign in to your account</div>
+
+      <div class="login-card">
+        <div class="login-tab-row">
+          <button class="login-tab ${mode==='login'?'active':''}" onclick="showLoginScreen('login')">Sign in</button>
+          <button class="login-tab ${mode==='register'?'active':''}" onclick="showLoginScreen('register')">Create account</button>
+        </div>
+
+        <input class="inp" id="l-username" type="text" placeholder="Username" autocomplete="username" autocapitalize="none">
+        <input class="inp" id="l-password" type="password" placeholder="Password" autocomplete="${mode==='login'?'current-password':'new-password'}">
+        ${mode==='register'?'<input class="inp" id="l-password2" type="password" placeholder="Confirm password">':''}
+
+        <div class="err-msg" id="l-err"></div>
+
+        <button class="btn-primary" onclick="${mode==='login'?'doLogin()':'doRegister()'}">
+          ${mode==='login'?'Sign in →':'Create account →'}
+        </button>
+      </div>
+
+      <div style="font-size:11px;color:var(--muted2);text-align:center">
+        Connected to Google Sheet · <span style="color:var(--accent2);cursor:pointer" onclick="showSetupScreen()">Settings</span>
+      </div>
+    </div>`);
 }
 
-function saveSettings() {
-  cfg.apiKey   = document.getElementById('s-apikey').value.trim();
-  cfg.clientId = document.getElementById('s-clientid').value.trim();
-  cfg.sheetId  = document.getElementById('s-sheetid').value.trim();
-  localStorage.setItem('st-config', JSON.stringify(cfg));
+async function doLogin() {
+  const username = document.getElementById('l-username').value.trim();
+  const password = document.getElementById('l-password').value;
+  if(!username||!password){ document.getElementById('l-err').textContent='Please fill in all fields'; return; }
+  document.getElementById('l-err').textContent='Signing in...';
+  const res = await loginUser(username, password);
+  if(!res.ok){ document.getElementById('l-err').textContent=res.err; return; }
+  currentUser = res.user;
+  sessionStorage.setItem('st-user', JSON.stringify(currentUser));
+  await loadSubjects();
+  showAppScreen();
+}
+
+async function doRegister() {
+  const username = document.getElementById('l-username').value.trim();
+  const password = document.getElementById('l-password').value;
+  const pw2      = document.getElementById('l-password2')?.value;
+  if(!username||!password){ document.getElementById('l-err').textContent='Please fill in all fields'; return; }
+  if(password!==pw2){ document.getElementById('l-err').textContent='Passwords do not match'; return; }
+  if(password.length<6){ document.getElementById('l-err').textContent='Password must be at least 6 characters'; return; }
+  document.getElementById('l-err').textContent='Creating account...';
+  const res = await registerUser(username, password);
+  if(!res.ok){ document.getElementById('l-err').textContent=res.err; return; }
+  toast('Account created! Please sign in.','ok');
+  showLoginScreen('login');
+}
+
+function doLogout() {
+  currentUser = null;
+  sessionStorage.removeItem('st-user');
   closeSheet();
-  toast('Saved — reconnecting...');
-  setTimeout(() => initApp(), 500);
+  showLoginScreen();
+}
+
+// ── App screen ────────────────────────────────────────────────────────
+function showAppScreen() {
+  render(`
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-icon">📚</div>
+        <div>
+          <div class="topbar-title">Study Tracker</div>
+          <div class="topbar-user">@${esc(currentUser.username)}</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="sync-dot ok" id="sync-dot"></div>
+        <button class="icon-btn" onclick="openSettings()">⚙️</button>
+      </div>
+    </div>
+
+    <div class="scroll" id="scroll-area">
+      <div class="loading"><div class="spinner"></div>Loading...</div>
+    </div>
+
+    <div class="bottom-nav">
+      <button class="nav-tab active" id="tab-dashboard" onclick="switchTab('dashboard',this)">
+        <span class="nav-tab-icon">◼</span>Dashboard
+      </button>
+      <button class="nav-tab" id="tab-calendar" onclick="switchTab('calendar',this)">
+        <span class="nav-tab-icon">📅</span>Calendar
+      </button>
+      <button class="nav-tab" id="tab-gantt" onclick="switchTab('gantt',this)">
+        <span class="nav-tab-icon">📊</span>Gantt
+      </button>
+    </div>
+
+    <button class="fab" id="fab" onclick="openAddSheet()">+</button>`);
+  renderTab();
 }
 
 // ══════════════════════════════════════════════════════════════════════
-// FILTERS / SORT
-// ══════════════════════════════════════════════════════════════════════
-function setFilter(f) { filterMode=f; renderDashboard(); }
-function getFiltered() {
-  let list = [...subjects];
-  if (['not started','in progress','finished'].includes(filterMode)) list=list.filter(s=>s.status===filterMode);
-  else if (filterMode==='high')     list=list.filter(s=>s.priority==='high');
-  else if (filterMode==='medium')   list=list.filter(s=>s.priority==='medium');
-  else if (filterMode==='low')      list=list.filter(s=>s.priority==='low');
-  else if (filterMode==='due-soon') list=list.filter(s=>{const d=daysUntil(s.examDate);return d!==null&&d<=7&&d>=0;});
-  const po={high:0,medium:1,low:2};
-  if (sortBy==='priority') list.sort((a,b)=>po[a.priority]-po[b.priority]||(daysUntil(a.examDate)||9999)-(daysUntil(b.examDate)||9999));
-  else if (sortBy==='progress') list.sort((a,b)=>b.progress-a.progress);
-  else if (sortBy==='date') list.sort((a,b)=>(daysUntil(a.examDate)||9999)-(daysUntil(b.examDate)||9999));
-  return list;
-}
-
-// ══════════════════════════════════════════════════════════════════════
-// TAB SWITCHING
+// TAB ROUTING
 // ══════════════════════════════════════════════════════════════════════
 function switchTab(tab, btn) {
   currentTab = tab;
   document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById('fab').style.display = tab==='dashboard' ? 'flex' : 'none';
+  document.getElementById('fab').style.display = tab==='dashboard'?'flex':'none';
   renderTab();
 }
 
 function renderTab() {
-  if (currentTab==='dashboard') renderDashboard();
-  else if (currentTab==='calendar') renderCalendar();
-  else if (currentTab==='gantt') renderGantt();
+  if(currentTab==='dashboard') renderDashboard();
+  else if(currentTab==='calendar') renderCalendar();
+  else if(currentTab==='gantt') renderGantt();
 }
 
 // ══════════════════════════════════════════════════════════════════════
 // DASHBOARD
 // ══════════════════════════════════════════════════════════════════════
+function setFilter(f){ filterMode=f; renderDashboard(); }
+
+function getFiltered() {
+  let list=[...subjects];
+  if(['not started','in progress','finished'].includes(filterMode)) list=list.filter(s=>s.status===filterMode);
+  else if(filterMode==='high')     list=list.filter(s=>s.priority==='high');
+  else if(filterMode==='medium')   list=list.filter(s=>s.priority==='medium');
+  else if(filterMode==='low')      list=list.filter(s=>s.priority==='low');
+  else if(filterMode==='due-soon') list=list.filter(s=>{const d=daysUntil(s.examDate);return d!==null&&d<=7&&d>=0;});
+  const po={high:0,medium:1,low:2};
+  if(sortBy==='priority') list.sort((a,b)=>po[a.priority]-po[b.priority]||(daysUntil(a.examDate)||9999)-(daysUntil(b.examDate)||9999));
+  else if(sortBy==='progress') list.sort((a,b)=>b.progress-a.progress);
+  else if(sortBy==='date') list.sort((a,b)=>(daysUntil(a.examDate)||9999)-(daysUntil(b.examDate)||9999));
+  return list;
+}
+
 function renderDashboard() {
   const total=subjects.length;
   const inProg=subjects.filter(s=>s.status==='in progress').length;
   const done=subjects.filter(s=>s.status==='finished').length;
   const soon=subjects.filter(s=>{const d=daysUntil(s.examDate);return d!==null&&d<=7&&d>=0;}).length;
   const list=getFiltered();
-
-  const chips = [
-    ['all','All'],['not started','Not started'],['in progress','In progress'],
-    ['finished','Finished'],['high','🔴 High'],['medium','🟡 Medium'],
-    ['low','🟢 Low'],['due-soon','Due soon'],
-  ];
-
-  const cardsHtml = list.length ? list.map(cardHtml).join('') : `
-    <div class="empty">
-      <div class="empty-icon">📖</div>
-      <div class="empty-title">No subjects yet</div>
-      <div class="empty-sub">Tap + to add your first subject</div>
-    </div>`;
-
-  document.getElementById('scroll-area').innerHTML = `
+  const chips=[['all','All'],['not started','Not started'],['in progress','In progress'],['finished','Finished'],['high','🔴 High'],['medium','🟡 Medium'],['low','🟢 Low'],['due-soon','Due soon']];
+  const cardsHtml=list.length?list.map(cardHtml).join(''):`<div class="empty"><div class="empty-icon">📖</div><div class="empty-title">No subjects yet</div><div class="empty-sub">Tap + to add your first subject</div></div>`;
+  document.getElementById('scroll-area').innerHTML=`
     <div class="stats-strip">
       <div class="stat" style="--ac:var(--muted)"><div class="stat-val">${total}</div><div class="stat-lbl">Total</div></div>
       <div class="stat" style="--ac:var(--blue2)"><div class="stat-val" style="color:var(--blue2)">${inProg}</div><div class="stat-lbl">Active</div></div>
@@ -604,25 +650,24 @@ function renderDashboard() {
         <option value="progress" ${sortBy==='progress'?'selected':''}>By progress</option>
       </select>
     </div>
-    <div class="chips">
-      ${chips.map(([v,l])=>`<button class="chip ${filterMode===v?'active':''}" onclick="setFilter('${v}')">${l}</button>`).join('')}
-    </div>
+    <div class="chips">${chips.map(([v,l])=>`<button class="chip ${filterMode===v?'active':''}" onclick="setFilter('${v}')">${l}</button>`).join('')}</div>
     <div class="cards">${cardsHtml}</div>`;
 }
 
 function cardHtml(s) {
   const days=daysUntil(s.examDate), pct=s.progress, complete=pct===100;
   const urgent=days!==null&&days<=3&&days>=0;
-  const dateLabel=days!==null?`${fmtDate(s.examDate)} · ${days===0?'Today!':days<0?Math.abs(days)+'d ago':days+'d'}`:fmtDate(s.examDate);
   const links=(s.links||[]).filter(l=>l.startsWith('http'));
   return `<div class="card fade-in">
-    <div class="card-header">
-      <div class="card-title">${esc(s.name)}</div>
-    </div>
+    <div class="card-title">${esc(s.name)}</div>
     <div class="card-badges">
       <span class="badge badge-${s.priority}">${s.priority}</span>
       ${statusPill(s.status)}
-      ${s.examDate?`<span class="badge ${urgent?'badge-urgent':'badge-date'}">${dateLabel}</span>`:''}
+    </div>
+    <div class="date-row">
+      ${s.startDate?`<span class="badge badge-start">▶ ${fmtShort(s.startDate)}</span>`:''}
+      ${s.startDate&&s.examDate?`<span class="date-sep">→</span>`:''}
+      ${s.examDate?`<span class="badge ${urgent?'badge-urgent':'badge-date'}">🎯 ${fmtShort(s.examDate)}${days!==null?' · '+(days===0?'Today!':days<0?Math.abs(days)+'d ago':days+'d'):''}</span>`:''}
     </div>
     ${s.notes?`<div class="card-notes">${esc(s.notes)}</div>`:''}
     ${links.length?`<div class="card-links">${links.map(l=>`<a href="${l}" class="link-chip" target="_blank">↗ ${safeHost(l)}</a>`).join('')}</div>`:''}
@@ -641,24 +686,22 @@ function cardHtml(s) {
   </div>`;
 }
 
-function liveProgress(id,val) {
-  const f=document.getElementById('fill-'+id), p=document.getElementById('pct-'+id);
+function liveProgress(id,val){
+  const f=document.getElementById('fill-'+id),p=document.getElementById('pct-'+id);
   if(f){f.style.width=val+'%';f.className='pbar-fill'+(parseInt(val)===100?' done':'');}
   if(p) p.textContent=val+'%';
 }
 
-async function saveProgress(id,val) {
+async function saveProgress(id,val){
   const s=subjects.find(x=>x.id===id); if(!s) return;
   s.progress=parseInt(val);
-  await writeAllSubjects();
-  toast('Saved','ok');
+  await writeAllSubjects(); toast('Saved','ok');
 }
 
-async function deleteSubject(id) {
+async function deleteSubject(id){
   if(!confirm('Delete this subject?')) return;
   subjects=subjects.filter(x=>x.id!==id);
-  await writeAllSubjects();
-  renderDashboard(); toast('Deleted','ok');
+  await writeAllSubjects(); renderDashboard(); toast('Deleted','ok');
 }
 
 // ══════════════════════════════════════════════════════════════════════
@@ -684,8 +727,13 @@ function formHtml(s) {
         </select>
       </div>
     </div>
-    <div class="field"><label>Exam date</label>
-      <input type="date" id="f-date" value="${s?.examDate||''}">
+    <div class="field-row">
+      <div class="field"><label>Start date</label>
+        <input type="date" id="f-start" value="${s?.startDate||''}">
+      </div>
+      <div class="field"><label>Exam date</label>
+        <input type="date" id="f-exam" value="${s?.examDate||''}">
+      </div>
     </div>
     <div class="field"><label>Progress — <span id="prog-disp">${s?.progress||0}%</span></label>
       <input type="range" min="0" max="100" value="${s?.progress||0}" step="1" class="slider"
@@ -699,60 +747,60 @@ function formHtml(s) {
     </div>`;
 }
 
-function openAddSheet() {
-  document.getElementById('sheet-content').innerHTML = `
-    <div class="sheet-title">Add subject</div>
-    ${formHtml(null)}
-    <button class="btn btn-primary" onclick="submitSubject(null)">Save subject</button>`;
+function openAddSheet(){
+  document.getElementById('sheet-content').innerHTML=`<div class="sheet-title">Add subject</div>${formHtml(null)}<button class="btn primary" onclick="submitSubject(null)">Save subject</button>`;
   openSheet();
 }
 
-function openEditSheet(id) {
+function openEditSheet(id){
   const s=subjects.find(x=>x.id===id); if(!s) return;
-  document.getElementById('sheet-content').innerHTML = `
-    <div class="sheet-title">Edit — ${esc(s.name)}</div>
-    ${formHtml(s)}
-    <button class="btn btn-primary" onclick="submitSubject('${id}')">Save changes</button>`;
+  document.getElementById('sheet-content').innerHTML=`<div class="sheet-title">Edit — ${esc(s.name)}</div>${formHtml(s)}<button class="btn primary" onclick="submitSubject('${id}')">Save changes</button>`;
   openSheet();
 }
 
-function openSheet() {
-  document.getElementById('sheet-overlay').classList.add('open');
-}
-function closeSheet() {
-  document.getElementById('sheet-overlay').classList.remove('open');
+function openSettings(){
+  document.getElementById('sheet-content').innerHTML=`
+    <div class="sheet-title">⚙️ Settings</div>
+    <div style="background:var(--surface2);border-radius:var(--radius-sm);padding:14px;margin-bottom:16px">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Signed in as</div>
+      <div style="font-size:15px;font-weight:600">@${esc(currentUser.username)}</div>
+    </div>
+    ${cfg.sheetId?`<div style="font-size:12px;color:var(--muted);margin-bottom:14px">
+      <a href="https://docs.google.com/spreadsheets/d/${cfg.sheetId}" target="_blank" style="color:var(--accent2)">Open Google Sheet ↗</a>
+    </div>`:''}
+    <button class="btn" onclick="closeSheet();googleSignIn()">Re-authenticate Google</button>
+    <button class="btn" style="color:var(--red2);border-color:rgba(232,67,147,.2);background:var(--red-bg)" onclick="doLogout()">Sign out</button>`;
+  openSheet();
 }
 
-async function submitSubject(id) {
+function openSheet(){ document.getElementById('sheet-overlay').classList.add('open'); }
+function closeSheet(){ document.getElementById('sheet-overlay').classList.remove('open'); }
+
+async function submitSubject(id){
   const name=document.getElementById('f-name').value.trim();
-  if(!name){toast('Please enter a subject name','err');return;}
+  if(!name){ toast('Please enter a subject name','err'); return; }
   const links=document.getElementById('f-links').value.split('\n').map(l=>l.trim()).filter(l=>l.startsWith('http'));
   const data={
     id:id||(Date.now().toString(36)+Math.random().toString(36).slice(2,4)),
+    userId:currentUser.username,
     name, priority:document.getElementById('f-priority').value,
     status:document.getElementById('f-status').value,
-    examDate:document.getElementById('f-date').value,
+    startDate:document.getElementById('f-start').value,
+    examDate:document.getElementById('f-exam').value,
     progress:parseInt(document.getElementById('f-progress').value),
     notes:document.getElementById('f-notes').value.trim(),
     links, createdAt:id?(subjects.find(x=>x.id===id)?.createdAt||new Date().toISOString()):new Date().toISOString()
   };
   closeSheet();
-  if(id) {
-    const i=subjects.findIndex(x=>x.id===id);
-    subjects[i]=data;
-    await writeAllSubjects();
-    toast('Updated','ok');
-  } else {
-    await appendSubject(data);
-    toast('Added','ok');
-  }
+  if(id){ const i=subjects.findIndex(x=>x.id===id); subjects[i]=data; await writeAllSubjects(); toast('Updated','ok'); }
+  else { await appendSubject(data); toast('Added','ok'); }
   renderDashboard();
 }
 
 // ══════════════════════════════════════════════════════════════════════
-// CALENDAR
+// CALENDAR — shows start date (green) + exam date (priority colour)
 // ══════════════════════════════════════════════════════════════════════
-function renderCalendar() {
+function renderCalendar(){
   const now=new Date();
   if(!calYear) calYear=now.getFullYear();
   if(calMonth===undefined) calMonth=now.getMonth();
@@ -760,8 +808,19 @@ function renderCalendar() {
   const totalDays=new Date(calYear,calMonth+1,0).getDate();
   const startDow=firstDay.getDay();
   const today=now.toISOString().slice(0,10);
-  const examMap={};
-  subjects.forEach(s=>{ if(s.examDate){if(!examMap[s.examDate])examMap[s.examDate]=[];examMap[s.examDate].push(s);} });
+
+  // Build event map for both start and exam dates
+  const eventMap={};
+  function addEvent(dateStr, label, cls) {
+    if(!dateStr) return;
+    if(!eventMap[dateStr]) eventMap[dateStr]=[];
+    eventMap[dateStr].push({label,cls});
+  }
+  subjects.forEach(s=>{
+    if(s.startDate) addEvent(s.startDate, `▶ ${s.name}`, 'start-event');
+    if(s.examDate)  addEvent(s.examDate,  `🎯 ${s.name}`, `exam-${s.priority}`);
+  });
+
   let cells='', dayCount=1;
   const totalCells=Math.ceil((startDow+totalDays)/7)*7;
   for(let i=0;i<totalCells;i++){
@@ -770,63 +829,93 @@ function renderCalendar() {
     else if(dayCount<=totalDays){cellDate=dayCount;dateStr=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(dayCount).padStart(2,'0')}`;dayCount++;}
     else{const d=new Date(calYear,calMonth+1,dayCount-totalDays);cellDate=d.getDate();dateStr=d.toISOString().slice(0,10);other=true;dayCount++;}
     const isToday=dateStr===today;
-    const evts=(examMap[dateStr]||[]).map(s=>`<div class="cal-evt ${s.priority}">${esc(s.name)}</div>`).join('');
+    const evts=(eventMap[dateStr]||[]).map(e=>`<div class="cal-evt ${e.cls}" title="${esc(e.label)}">${esc(e.label)}</div>`).join('');
     cells+=`<div class="cal-cell ${other?'other':''} ${isToday?'today':''}"><div class="cal-date">${cellDate}</div>${evts}</div>`;
   }
   const monthName=firstDay.toLocaleDateString('en-US',{month:'long',year:'numeric'});
   document.getElementById('scroll-area').innerHTML=`
     <div class="cal-wrap">
       <div class="cal-nav">
-        <button class="btn-ghost" style="border:none;background:none;color:var(--muted);font-size:20px;cursor:pointer;padding:4px" onclick="calNav(-1)">‹</button>
+        <button class="icon-btn" style="font-size:22px" onclick="calNav(-1)">‹</button>
         <div class="cal-month">${monthName}</div>
-        <button class="btn-ghost" style="border:none;background:none;color:var(--muted);font-size:20px;cursor:pointer;padding:4px" onclick="calNav(1)">›</button>
+        <button class="icon-btn" style="font-size:22px" onclick="calNav(1)">›</button>
       </div>
       <div class="cal-grid">
         ${['S','M','T','W','T','F','S'].map(d=>`<div class="cal-day-name">${d}</div>`).join('')}
         ${cells}
+      </div>
+      <div style="display:flex;gap:12px;margin-top:12px;font-size:11px;color:var(--muted);flex-wrap:wrap">
+        <span>▶ green = start date</span>
+        <span>🎯 coloured = exam date</span>
       </div>
     </div>`;
 }
 function calNav(dir){calMonth+=dir;if(calMonth<0){calMonth=11;calYear--;}else if(calMonth>11){calMonth=0;calYear++;}renderCalendar();}
 
 // ══════════════════════════════════════════════════════════════════════
-// GANTT
+// GANTT — bars span from startDate → examDate
 // ══════════════════════════════════════════════════════════════════════
-function renderGantt() {
-  const withDates=subjects.filter(s=>s.examDate);
+function renderGantt(){
+  const withDates=subjects.filter(s=>s.examDate||s.startDate);
   if(!withDates.length){
-    document.getElementById('scroll-area').innerHTML=`<div class="empty"><div class="empty-icon">📊</div><div class="empty-title">No exam dates set</div><div class="empty-sub">Add exam dates to see the Gantt chart</div></div>`;
+    document.getElementById('scroll-area').innerHTML=`<div class="empty"><div class="empty-icon">📊</div><div class="empty-title">No dates set</div><div class="empty-sub">Add start or exam dates to see the Gantt chart</div></div>`;
     return;
   }
-  const today=new Date();today.setHours(0,0,0,0);
-  const maxDate=new Date(Math.max(...withDates.map(s=>new Date(s.examDate))));
-  maxDate.setDate(maxDate.getDate()+7);
-  const totalDays=Math.ceil((maxDate-today)/86400000);
+  const today=new Date(); today.setHours(0,0,0,0);
+  const allDates=[];
+  withDates.forEach(s=>{
+    if(s.startDate) allDates.push(new Date(s.startDate));
+    if(s.examDate)  allDates.push(new Date(s.examDate));
+  });
+  const minDate=new Date(Math.min(...allDates,today));
+  minDate.setDate(minDate.getDate()-2);
+  const maxDate=new Date(Math.max(...allDates));
+  maxDate.setDate(maxDate.getDate()+5);
+  const totalDays=Math.ceil((maxDate-minDate)/86400000);
+
+  // Ruler labels
+  const step=totalDays<=30?5:totalDays<=60?10:totalDays<=120?14:21;
+  let rulerHtml='';
+  for(let i=0;i<=totalDays;i+=step){
+    const d=new Date(minDate); d.setDate(d.getDate()+i);
+    const pct=(i/totalDays*100).toFixed(1);
+    rulerHtml+=`<div class="gantt-ruler-lbl" style="left:${pct}%">${fmtShort(d.toISOString().slice(0,10))}</div>`;
+  }
+
+  // Today line position
+  const todayPct=Math.max(0,Math.min(100,((today-minDate)/86400000)/totalDays*100));
+
   const rows=withDates.map(s=>{
-    const end=new Date(s.examDate);end.setHours(0,0,0,0);
-    const dLeft=Math.ceil((end-today)/86400000);
-    const past=dLeft<0;
-    const barW=past?1:Math.min(dLeft/totalDays*100,100);
+    const start=s.startDate?new Date(s.startDate):today;
+    const end  =s.examDate ?new Date(s.examDate) :start;
+    start.setHours(0,0,0,0); end.setHours(0,0,0,0);
+    const barLeft=Math.max(0,((start-minDate)/86400000)/totalDays*100);
+    const barRight=Math.min(100,((end-minDate)/86400000)/totalDays*100);
+    const barW=Math.max(barRight-barLeft,0.5);
+    // Progress fill within the bar
     const progW=barW*(s.progress/100);
+    const dLeft=daysUntil(s.examDate);
     const st={'not started':'○','in progress':'◑','finished':'●'}[s.status]||'○';
     return `<div class="gantt-row">
       <div class="gantt-lbl">
         <div class="gantt-lbl-name">${st} ${esc(s.name)}</div>
-        <div class="gantt-lbl-sub">${past?'Past':dLeft+'d'} · ${s.progress}%</div>
+        <div class="gantt-lbl-sub">${s.startDate?fmtShort(s.startDate):'?'} → ${s.examDate?fmtShort(s.examDate):'?'} · ${s.progress}%</div>
       </div>
       <div class="gantt-track">
-        <div class="gantt-bar-bg ${s.priority}" style="left:0;width:${barW}%"></div>
-        <div class="gantt-bar-fill ${s.priority}" style="left:0;width:${progW}%">${s.progress>10?s.progress+'%':''}</div>
-        <div class="gantt-today-line" style="left:0"></div>
+        <div class="gantt-bg ${s.priority}" style="left:${barLeft.toFixed(1)}%;width:${barW.toFixed(1)}%"></div>
+        <div class="gantt-fill ${s.priority}" style="left:${barLeft.toFixed(1)}%;width:${progW.toFixed(1)}%">${s.progress>12?s.progress+'%':''}</div>
+        <div class="gantt-today" style="left:${todayPct.toFixed(1)}%"></div>
       </div>
     </div>`;
   }).join('');
+
   document.getElementById('scroll-area').innerHTML=`
     <div class="gantt-wrap">
-      <div style="font-size:11px;color:var(--muted);margin-bottom:12px">Today → ${fmtDate(maxDate.toISOString().slice(0,10))}</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:10px">Start date → Exam date · filled = progress · line = today</div>
+      <div class="gantt-ruler" style="height:20px;margin-bottom:6px">${rulerHtml}</div>
       ${rows}
       <div style="display:flex;gap:14px;margin-top:14px;font-size:11px;color:var(--muted);flex-wrap:wrap">
-        <span>🔴 High</span><span>🟡 Medium</span><span>🟢 Low</span>
+        <span>🔴 High · 🟡 Medium · 🟢 Low</span>
         <span>○ Not started · ◑ In progress · ● Finished</span>
       </div>
     </div>`;
@@ -835,17 +924,23 @@ function renderGantt() {
 // ══════════════════════════════════════════════════════════════════════
 // INIT
 // ══════════════════════════════════════════════════════════════════════
-async function initApp() {
-  if (!cfg.apiKey || !cfg.clientId) {
-    showSetupScreen(); return;
-  }
-  document.getElementById('fab').style.display = 'flex';
-  document.getElementById('scroll-area').innerHTML = '<div class="loading"><div class="spinner"></div>Connecting to Google...</div>';
+async function initApp(){
+  if(!cfg.apiKey||!cfg.clientId){ showSetupScreen(); return; }
+
+  render(`<div class="loading" style="height:100vh"><div class="spinner"></div>Connecting to Google...</div>`);
+
   await loadGoogleAPIs();
-  signIn();
+
+  // Check if we already have a token
+  if(gapi.client.getToken()){
+    await ensureSheets();
+    if(currentUser){ await loadSubjects(); showAppScreen(); }
+    else showLoginScreen();
+  } else {
+    googleSignIn();
+  }
 }
 
-// Start
 initApp();
 </script>
 </body>
